@@ -49,16 +49,15 @@ public class ApiController {
     }
 
     @PostMapping("/users")
-    public ResponseEntity<User> save(@ModelAttribute("user") User user) {
+    public ResponseEntity<Long> save(@RequestBody User user) {
         if (user == null) {
             return ResponseEntity.badRequest().build();
         }
-        userService.add(user);
-        return ResponseEntity.ok(user);
+        return ResponseEntity.ok(userService.add(user));
     }
 
     @PutMapping(value = "/users/{id}")
-    public ResponseEntity<User> edit(@ModelAttribute("user") User user) {
+    public ResponseEntity<User> edit(@RequestBody User user) {
         if (user == null) {
             return ResponseEntity.badRequest().build();
         }

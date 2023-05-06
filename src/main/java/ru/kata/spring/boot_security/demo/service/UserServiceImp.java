@@ -24,21 +24,21 @@ public class UserServiceImp implements UserService {
 
     @Override
     @Transactional
-    public void add(User user) {
+    public Long add(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        repository.save(user);
+        return repository.save(user).getId();
     }
 
     @Override
     public User getById(Long id) {
-        return repository.getById(id);
+        return repository.findById(id).get();
     }
 
     @Override
     @Transactional
     public void update(User user) {
-        User userDb = repository.getById(user.getId());
-        if (user.getPassword() == null) {
+        User userDb = repository.findById(user.getId()).get();
+        if (user.getPassword().isEmpty()) {
             user.setPassword(userDb.getPassword());
         } else {
             passwordEncoder.encode(user.getPassword());

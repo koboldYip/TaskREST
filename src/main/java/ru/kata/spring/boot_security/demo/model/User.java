@@ -23,7 +23,7 @@ public class User implements UserDetails {
     private Byte age;
     @Column(name = "password")
     private String password;
-    @Column(name = "email")
+    @Column(name = "email", unique = true)
     private String email;
 
     @ManyToMany(fetch = FetchType.LAZY)

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -23,11 +23,9 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <!--    Пользователь-->
     <span class="navbar-text">
-        <span class="navbar-text h5 m-0 p-0 text-white font-weight-bold" th:text="${user.email}"></span>
+        <span id="currentUserEmail" class="navbar-text h5 m-0 p-0 text-white font-weight-bold"></span>
         <span class="navbar-text h5 m-0 p-0 text-white">with roles:</span>
-            <span class="navbar-text h5 m-0 p-0 text-white" th:each="item : *{user.roles}"
-                  th:text="${item.role} + '&nbsp'">
-            </span>
+        <span id="currentUserRoles" class="navbar-text h5 m-0 p-0 text-white"></span>
     </span>
     <!--    Выход-->
     <a class="nav-link text-white-50 h5 m-0 p-0 ml-auto" href="/logout">Logout</a>
@@ -59,16 +57,6 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td th:text="${user.getId()}">
-                                <td th:text="${user.getFirstName()}">
-                                <td th:text="${user.getLastName()}">
-                                <td th:text="${user.getAge()}">
-                                <td th:text="${user.getEmail()}">
-                                <td>
-                                    <span th:each="item : *{user.roles}" th:text="${item.role} + '&nbsp'"></span>
-                                </td>
-                            </tr>
                             </tbody>
                         </table>
                     </div>
@@ -86,5 +74,6 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
+<script src="/user.js"></script>
 </body>
 </html>
