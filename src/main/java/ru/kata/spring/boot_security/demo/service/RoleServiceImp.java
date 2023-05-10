@@ -27,20 +27,4 @@ public class RoleServiceImp implements RoleService {
     public List<Role> findAll() {
         return repository.findAll();
     }
-
-    @Override
-    public Role getById(Long id) {
-        return repository.findById(id).get();
-    }
-
-    @Override
-    @Transactional
-    public void delete(Long id) {
-        repository.deleteById(id);
-    }
-
-    @Override
-    public Role getByRole(String role) {
-        return repository.findByRole(role);
-    }
 }

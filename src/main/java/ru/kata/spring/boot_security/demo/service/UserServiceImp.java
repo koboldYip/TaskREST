@@ -37,19 +37,13 @@ public class UserServiceImp implements UserService {
     @Override
     @Transactional
     public void update(User user) {
-        User userDb = repository.findById(user.getId()).get();
         if (user.getPassword().isEmpty()) {
+            User userDb = repository.findById(user.getId()).get();
             user.setPassword(userDb.getPassword());
         } else {
-            passwordEncoder.encode(user.getPassword());
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
         }
         repository.save(user);
-    }
-
-    @Override
-    @Transactional
-    public void delete(User user) {
-        repository.delete(user);
     }
 
     @Override
